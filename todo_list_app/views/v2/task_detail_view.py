@@ -5,5 +5,5 @@ from todo_list_app.models import Task
 
 class TaskDetailView(DetailView, LoginRequiredMixin):
     model = Task
-    template_name = 'todo_list_app/v1/task_detail_view_v1.html'
+    template_name = 'todo_list_app/v1/task_detail.html'
     context_object_name = 'task'

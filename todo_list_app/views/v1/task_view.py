@@ -9,7 +9,7 @@ from todo_list_app.forms import CreateTaskByShortenLinkForm
 @login_required
 def task_view(request, todo_list_id):
     tasks = Task.objects.filter(todolist__id=todo_list_id, todolist__user=request.user)
-    return render(request, 'todo_list_app/v1/tasks_view_v1.html', {'tasks': tasks, 'todo_list_id': todo_list_id})
+    return render(request, 'todo_list_app/v1/list_detail_v1.html', {'tasks': tasks, 'todo_list_id': todo_list_id})
 
 
 @login_required
@@ -24,7 +24,7 @@ def create_task(request, todo_list_id):
             return redirect('tasks_view_v1', todo_list_id=todo_list_id)
     else:
         form = TaskForm()
-    return render(request, 'todo_list_app/v1/create_task_view_v1.html', {'form': form})
+    return render(request, 'todo_list_app/v1/create_task.html', {'form': form})
 
 
 @login_required
@@ -39,7 +39,7 @@ def create_task_by_shorten_link(request, todo_list_id):
             return redirect('tasks_view_v1', todo_list_id=todo_list_id)
     else:
         form = CreateTaskByShortenLinkForm()
-    return render(request, 'todo_list_app/v1/create_task_view_v1.html', {'form': form})
+    return render(request, 'todo_list_app/v1/create_task.html', {'form': form})
 
 
 @login_required
@@ -52,7 +52,7 @@ def generate_short_link(request, task_id):
 @login_required
 def task_detail_view(request, task_id):
     task = get_object_or_404(Task, id=task_id)
-    return render(request, 'todo_list_app/v1/task_detail_view_v1.html', {'task': task})
+    return render(request, 'todo_list_app/v1/task_detail.html', {'task': task})
 
 
 @login_required

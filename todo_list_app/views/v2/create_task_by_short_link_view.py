@@ -9,7 +9,7 @@ from django.views.generic.edit import FormView
 
 class CreateTaskByShortLinkView(FormView, LoginRequiredMixin):
     form_class = CreateTaskByShortenLinkForm
-    template_name = 'todo_list_app/v1/create_task_view_v1.html'
+    template_name = 'todo_list_app/v1/create_task.html'
 
     def get_success_url(self):
         todo_list_id = self.kwargs['todo_list_id']

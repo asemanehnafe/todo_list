@@ -8,7 +8,7 @@ from todo_list_app.forms import TodoListForm
 @login_required
 def todo_list_view(request):
     todo_lists = ToDoList.objects.filter(user=request.user)
-    return render(request, 'todo_list_app/v1/to_do_lists_view_v1.html', {'todo_lists': todo_lists})
+    return render(request, 'todo_list_app/v1/todo_lists_v1.html', {'todo_lists': todo_lists})
 
 
 @login_required
@@ -22,7 +22,7 @@ def create_todo_list(request):
             return redirect('all_todo_lists_view_v1')
     else:
         form = TodoListForm()
-    return render(request, './todo_list_app/v1/create_list_view_v1.html', {'form': form})
+    return render(request, './todo_list_app/v1/create_todo_list.html', {'form': form})
 
 
 @login_required

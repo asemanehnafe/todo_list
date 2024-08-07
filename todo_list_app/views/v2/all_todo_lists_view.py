@@ -5,7 +5,7 @@ from todo_list_app.models import ToDoList
 
 class AllTodoListsView(ListView, LoginRequiredMixin):
     model = ToDoList
-    template_name = 'todo_list_app/v2/todo_lists.html'
+    template_name = 'todo_list_app/v2/todo_lists_v2.html'
     context_object_name = 'todo_lists'
 
     def get_context_data(self, **kwargs):

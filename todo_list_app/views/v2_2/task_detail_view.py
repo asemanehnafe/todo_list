@@ -9,4 +9,4 @@ from django.utils.decorators import method_decorator
 class TaskDetailView(View):
     def get(self, request, task_id):
         task = get_object_or_404(Task, id=task_id)
-        return render(request, 'todo_list_app/v1/task_detail_view_v1.html', {'task': task})
+        return render(request, 'todo_list_app/v1/task_detail.html', {'task': task})

@@ -8,7 +8,7 @@ from todo_list_app.forms import TodoListForm
 @method_decorator(login_required, name="dispatch")
 class CreateTodoListView(View):
     form_class = TodoListForm
-    template_name = ("todo_list_app/v1/create_list_view_v1.html")
+    template_name = ("todo_list_app/v1/create_todo_list.html")
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()

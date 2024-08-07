@@ -10,7 +10,7 @@ from django.views.generic.edit import CreateView
 class CreateTodoListView(CreateView, LoginRequiredMixin):
     model = ToDoList
     success_url = reverse_lazy('all_todo_lists_view_v2')
-    template_name = 'todo_list_app/v1/create_list_view_v1.html'
+    template_name = 'todo_list_app/v1/create_todo_list.html'
     form_class = TodoListForm
 
     def form_valid(self, form):
