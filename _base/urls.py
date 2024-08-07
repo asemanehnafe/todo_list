@@ -16,12 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from todo_list_app.views.main_page import main_page_view
+from todo_list.views.main_page import main_page_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_page_view),
-    path('v1/', include('todo_list_app.urls.urls_v1')),
-    path('v2_2/', include('todo_list_app.urls.urls_v2_2')),
-    path('v2/', include('todo_list_app.urls.urls_v2')),
+    path('v1/', include('todo_list.urls.urls_v1')),
+    path('v2_2/', include('todo_list.urls.urls_v2_2')),
+    path('v2/', include('todo_list.urls.urls_v2')),
 ]
