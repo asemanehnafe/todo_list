@@ -15,15 +15,15 @@ class DeleteTaskView(DeleteView, LoginRequiredMixin):
         return context
 
     def delete(self, request, *args, **kwargs):
-        list_id = self.kwargs['list_id']
-        current_list = get_object_or_404(ToDoList, id=list_id)
+        todo_list_id = self.kwargs['list_id']
+        current_list = get_object_or_404(ToDoList, id=todo_list_id)
         task = self.get_object()
         current_list.tasks.remove(task)
         if task.list_set.count() == 0:
             task.delete()
 
-        return redirect('tasks_view_v1', list_id=list_id)
+        return redirect('tasks_view_v1', todo_list_id=todo_list_id)
 
     def get_success_url(self):
-        list_id = self.kwargs['list_id']
-        return reverse_lazy('tasks_view_v2', kwargs={'list_id': list_id})
+        todo_list_id = self.kwargs['todo_list_id']
+        return reverse_lazy('tasks_view_v2', kwargs={'todo_list_id': todo_list_id})

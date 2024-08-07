@@ -2,31 +2,31 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from todo_list_app.models import ToDoList
-from todo_list_app.forms import ListForm
+from todo_list_app.forms import TodoListForm
 
 
 @login_required
-def list_view(request):
-    lists = ToDoList.objects.filter(user=request.user)
-    return render(request, 'todo_list_app/v1/to_do_lists_view_v1.html', {'lists': lists})
+def todo_list_view(request):
+    todo_lists = ToDoList.objects.filter(user=request.user)
+    return render(request, 'todo_list_app/v1/to_do_lists_view_v1.html', {'todo_lists': todo_lists})
 
 
 @login_required
-def create_list(request):
+def create_todo_list(request):
     if request.method == 'POST':
-        form = ListForm(request.POST)
+        form = TodoListForm(request.POST)
         if form.is_valid():
-            new_list = form.save(commit=False)
-            new_list.user = request.user
-            new_list.save()
-            return redirect('all_lists_view_v1')
+            new_todo_list = form.save(commit=False)
+            new_todo_list.user = request.user
+            new_todo_list.save()
+            return redirect('all_todo_lists_view_v1')
     else:
-        form = ListForm()
+        form = TodoListForm()
     return render(request, './todo_list_app/v1/create_list_view_v1.html', {'form': form})
 
 
 @login_required
-def delete_list(request, list_id):
-    deleting_list = get_object_or_404(ToDoList, id=list_id)
-    deleting_list.delete()
-    return redirect('all_lists_view_v1')
+def delete_todo_list(request, todo_list_id):
+    deleting_todo_list = get_object_or_404(ToDoList, id=todo_list_id)
+    deleting_todo_list.delete()
+    return redirect('all_todo_lists_view_v1')

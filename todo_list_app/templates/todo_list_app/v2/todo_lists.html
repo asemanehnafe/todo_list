@@ -1,12 +1,12 @@
 {% block content %}
-  <h1>Your Lists</h1>
+  <h1>Your todo lists</h1>
   <ul>
-    {% for list in lists_list %}
-      <li><a href="{% url 'tasks_view_v2' list.id %}">{{ list.name }}</a> -
-          <a href="{% url 'delete_list_v2' list.id %}">delete list</a></li>
+    {% for todo_list in todo_lists %}
+      <li><a href="{% url 'tasks_view_v2' todo_list.id %}">{{ todo_list.name }}</a> -
+          <a href="{% url 'delete_list_v2' todo_list.id %}">delete list</a></li>
      {% empty %}
-        <li>No list yet.</li>
+        <li>No todo list yet.</li>
     {% endfor %}
   </ul>
-  <a href="{% url 'create_list_v2' %}">Create a new list</a>
+  <a href="{% url 'create_list_v2' %}">Create a new todo list</a>
 {% endblock %}

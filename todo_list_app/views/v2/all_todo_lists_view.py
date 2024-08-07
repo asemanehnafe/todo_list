@@ -3,14 +3,14 @@ from django.views.generic.list import ListView
 from todo_list_app.models import ToDoList
 
 
-class AllListListView(ListView, LoginRequiredMixin):
+class AllTodoListsView(ListView, LoginRequiredMixin):
     model = ToDoList
     template_name = 'todo_list_app/v2/todo_lists.html'
-    context_object_name = 'lists_list'
+    context_object_name = 'todo_lists'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['lists_list'] = context['lists_list'].filter(user=self.request.user)
+        context['todo_lists'] = context['todo_lists'].filter(user=self.request.user)
         return context
 
 

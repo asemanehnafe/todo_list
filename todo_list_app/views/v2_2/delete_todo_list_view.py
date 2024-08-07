@@ -6,9 +6,9 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name="dispatch")
-class DeleteList(View):
-    def get(self, request, list_id):
-        deleting_list = get_object_or_404(ToDoList, id=list_id)
+class DeleteTodoListView(View):
+    def get(self, request, todo_list_id):
+        deleting_list = get_object_or_404(ToDoList, id=todo_list_id)
         deleting_list.delete()
-        return redirect('all_lists_view_v2_2')
+        return redirect('all_todo_lists_view_v2_2')
 

@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name="dispatch")
-class AllListView(View):
+class AllTodoListsView(View):
     def get(self, request):
-        lists = ToDoList.objects.filter(user=request.user)
-        return render(request, 'todo_list_app/v2_2/all_list_view_v2_2.html', {'lists': lists})
+        todo_lists = ToDoList.objects.filter(user=request.user)
+        return render(request, 'todo_list_app/v2_2/all_list_view_v2_2.html', {'todo_lists': todo_lists})

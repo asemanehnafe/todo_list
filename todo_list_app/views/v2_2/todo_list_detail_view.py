@@ -6,8 +6,8 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name="dispatch")
-class TaskView(View):
-    def get(self, request, list_id):
-        tasks = Task.objects.filter(todolist__id=list_id, todolist__user=request.user)
+class TodoListDetailView(View):
+    def get(self, request, todo_list_id):
+        tasks = Task.objects.filter(todolist__id=todo_list_id, todolist__user=request.user)
         return render(request, 'todo_list_app/v2_2/task_view_v2_2.html',
-                      {'tasks': tasks, 'list_id': list_id})
+                      {'tasks': tasks, 'todo_list_id': todo_list_id})

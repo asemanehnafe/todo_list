@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name="dispatch")
-class GenerateShortLink(View):
+class GenerateShortLinkView(View):
     def get(self, request, task_id):
         task = get_object_or_404(Task, id=task_id)
         short_link, created = TaskLink.objects.get_or_create(task=task)

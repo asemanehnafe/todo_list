@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from todo_list_app.models import Task, TaskLink
 
 
-class GenerateShortLink(TemplateView, LoginRequiredMixin):
+class GenerateShortLinkView(TemplateView, LoginRequiredMixin):
 
     template_name = 'todo_list_app/v1/generate_short_link.html'
 
