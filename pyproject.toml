@@ -1,0 +1,37 @@
+[tool.ruff]
+line-length = 88
+# Exclude specific directories or files if necessary
+exclude = [
+    "migrations",  # Ignore Django migration files
+    "static",
+    "venv",
+    ".venv",  # Ignore virtual environment directory
+    "__init__.py"
+]
+
+[tool.ruff.lint]
+select = [
+    "E",  # PEP8 errors
+    "F",  # Pyflakes
+    "I",  # Import conventions
+    "N",  # PEP 8 naming conventions
+    "DJ", # Django-specific linting rules
+]
+
+# Ignore specific rules that might be too strict for Django projects
+ignore = [
+    "F401",  # Ignore imported but unused errors
+    "F841",  # Ignore Local variable is assigned to but never used
+    "F811",  # Redefinition of unused
+    "DJ001", # Avoid using `null=True` on string-based fields such as `CharField`,
+    "E501",  # Ignore line length rule
+    "DJ007", # Do not use `__all__` with `ModelForm`, use `fields` instead
+    "E722",  # Do not use bare `except`
+    "F405",  # Avoid Star import, may be undefined, or defined from star imports
+    "F403",  # Avoid start import,  from * used; unable to detect undefined names
+    "DJ008", # Model does not define `__str__` method
+    "DJ006", # Do not use `exclude` with `ModelForm`, use `fields` instead
+]
+
+[tool.ruff.format]
+line-ending = "lf"

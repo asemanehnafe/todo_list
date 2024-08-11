@@ -7,13 +7,12 @@ from todo_list.models import Task, TaskLink
 
 
 class GenerateShortLinkView(TemplateView, LoginRequiredMixin):
-
-    template_name = 'todo_list_app/v1/generate_short_link.html'
+    template_name = "todo_list_app/v1/generate_short_link.html"
 
     def get_context_data(self, **kwargs):
-        task_id = self.kwargs['task_id']
+        task_id = self.kwargs["task_id"]
         task = get_object_or_404(Task, id=task_id)
         short_link, created = TaskLink.objects.get_or_create(task=task)
         context = super().get_context_data(**kwargs)
-        context['short_link'] = short_link
+        context["short_link"] = short_link
         return context
