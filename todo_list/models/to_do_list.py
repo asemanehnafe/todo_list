@@ -3,9 +3,13 @@ from django.db import models
 
 
 class ToDoList(models.Model):
-    name = models.CharField(max_length=100)
-    tasks = models.ManyToManyField(to="todo_list.Task", blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    name = models.CharField(max_length=100, verbose_name="عنوان")
+    tasks = models.ManyToManyField(
+        to="todo_list.Task", blank=True, verbose_name="وظیفه ها"
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=1, verbose_name="کاربر"
+    )
 
     def __str__(self):
         return self.name
