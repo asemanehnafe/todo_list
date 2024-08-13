@@ -7,9 +7,8 @@ class Task(models.Model):
     deadline = models.DateField()
     priority = models.IntegerField()
 
+    class Meta:
+        ordering = ["deadline", "priority"]
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        ordering = ["deadline", "priority"]
