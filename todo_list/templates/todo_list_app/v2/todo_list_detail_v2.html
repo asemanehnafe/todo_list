@@ -1,4 +1,4 @@
-{% block content %}
+<!doctype html>
   <h1>Tasks</h1>
   <ul>
     {% for task in todo_list %}
@@ -13,5 +13,3 @@
   <a href="{% url 'create_task_v2' todo_list_id %}">Add a new task</a>
     <br>
   <a href="{% url 'create_task_by_shortened_link_v2' todo_list_id %}">Add a new task by shortened link</a>
-
-{% endblock %}

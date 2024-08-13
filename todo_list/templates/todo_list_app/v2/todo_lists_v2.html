@@ -1,4 +1,4 @@
-{% block content %}
+<!doctype html>
   <h1>Your todo lists</h1>
   <ul>
     {% for todo_list in todo_lists %}
@@ -9,4 +9,3 @@
     {% endfor %}
   </ul>
   <a href="{% url 'create_list_v2' %}">Create a new todo list</a>
-{% endblock %}
