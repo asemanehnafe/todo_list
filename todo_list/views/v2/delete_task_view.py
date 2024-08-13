@@ -5,6 +5,8 @@ from django.views.generic.edit import DeleteView
 
 from todo_list.models import Task, ToDoList
 
+ZERO = 0
+
 
 class DeleteTaskView(DeleteView, LoginRequiredMixin):
     model = Task
@@ -19,7 +21,8 @@ class DeleteTaskView(DeleteView, LoginRequiredMixin):
         current_list = get_object_or_404(ToDoList, id=todo_list_id)
         task = self.get_object()
         current_list.tasks.remove(task)
-        if task.list_set.count() == 0:
+        is_task_in_no_list = task.todolist_set.count() == ZERO
+        if is_task_in_no_list:
             task.delete()
 
         return redirect("tasks_view_v1", todo_list_id=todo_list_id)

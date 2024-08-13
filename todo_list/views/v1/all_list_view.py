@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from todo_list.forms import TodoListForm
 from todo_list.models import ToDoList
 
+ONE = 1
+
 
 @login_required
 def todo_list_view(request):
@@ -31,7 +33,8 @@ def create_todo_list(request):
 def delete_todo_list(request, todo_list_id):
     deleting_todo_list = get_object_or_404(ToDoList, id=todo_list_id)
     for task in deleting_todo_list.tasks.all():
-        if task.todolist_set.count() == 1:
+        is_task_only_in_this_list = task.todolist_set.count() == ONE
+        if is_task_only_in_this_list:
             task.delete()
     deleting_todo_list.delete()
     return redirect("all_todo_lists_view_v1")

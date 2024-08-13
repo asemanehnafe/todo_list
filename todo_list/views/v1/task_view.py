@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from todo_list.forms import CreateTaskByShortenLinkForm, TaskForm
 from todo_list.models import Task, TaskLink, ToDoList
 
+ZERO = 0
+
 
 @login_required
 def task_view(request, todo_list_id):
@@ -68,6 +70,7 @@ def delete_task(request, todo_list_id, task_id):
     current_list = get_object_or_404(ToDoList, id=todo_list_id)
     task = get_object_or_404(Task, id=task_id)
     current_list.tasks.remove(task)
-    if task.todolist_set.count() == 0:
+    is_task_in_no_list = task.todolist_set.count() == ZERO
+    if is_task_in_no_list:
         task.delete()
     return redirect("tasks_view_v1", todo_list_id=todo_list_id)
