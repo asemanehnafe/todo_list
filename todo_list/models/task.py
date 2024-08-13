@@ -7,6 +7,7 @@ class Task(models.Model):
     deadline = models.DateField()
     priority = models.IntegerField()
 
+
     def __str__(self):
         return self.title
 

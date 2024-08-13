@@ -8,6 +8,7 @@ from todo_list.models import Task, TaskLink, ToDoList
 @login_required
 def task_view(request, todo_list_id):
     tasks = Task.objects.filter(todolist__id=todo_list_id, todolist__user=request.user)
+
     return render(
         request,
         "todo_list_app/v1/list_detail_v1.html",
