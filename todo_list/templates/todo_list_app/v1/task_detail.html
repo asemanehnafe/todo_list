@@ -2,5 +2,5 @@
   <h1>{{ task.title }}</h1>
     <p>description: {{ task.description }}</p>
     <p>deadline: {{ task.deadline }}</p>
-    <p>priority: {{ task.priority }}</p>
+    <p>priority: {{ task.get_priority_display }}</p>
 {% endblock %}
