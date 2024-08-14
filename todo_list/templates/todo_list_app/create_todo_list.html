@@ -1,5 +1,5 @@
 <!doctype html>
-  <h1>Create a new todo list</h1>
+  <h1>{{ title }}</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

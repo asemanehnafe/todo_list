@@ -9,8 +9,13 @@ from todo_list.models import Task
 
 class EditTaskView(UpdateView, LoginRequiredMixin):
     model = Task
-    template_name = "todo_list_app/create_task.html"
+    template_name = "todo_list_app/create_todo_list.html"
     form_class = TaskForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "edit task"
+        return context
 
     def get_success_url(self):
         todo_list_id = self.kwargs["todo_list_id"]

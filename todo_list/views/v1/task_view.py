@@ -60,8 +60,8 @@ def create_task_by_shorten_link(request, todo_list_id):
         form = CreateTaskByShortenLinkForm()
     return render(
         request,
-        "todo_list_app/create_task.html",
-        {"form": form},
+        "todo_list_app/create_todo_list.html",
+        {"form": form, "title": "create task by short link"},
     )
 
 

@@ -9,7 +9,12 @@ from todo_list.models import TaskLink, ToDoList
 
 class CreateTaskByShortLinkView(FormView, LoginRequiredMixin):
     form_class = CreateTaskByShortenLinkForm
-    template_name = "todo_list_app/create_task.html"
+    template_name = "todo_list_app/create_todo_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "create task by short link"
+        return context
 
     def get_success_url(self):
         todo_list_id = self.kwargs["todo_list_id"]
