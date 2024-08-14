@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
-from todo_list.forms import CreateTaskByShortenLinkForm, TaskForm
+from todo_list.forms import CreateTaskByShortenLinkForm
+from todo_list.forms.v1 import TaskForm
 from todo_list.models import Task, TaskLink, ToDoList
 
 ZERO = 0
@@ -13,7 +14,7 @@ def task_view(request, todo_list_id):
 
     return render(
         request,
-        "todo_list_app/v1/list_detail_v1.html",
+        "todo_list_app/v1/todo_list_detail_v1.html",
         {"tasks": tasks, "todo_list_id": todo_list_id},
     )
 
@@ -23,14 +24,19 @@ def create_task(request, todo_list_id):
     if request.method == "POST":
         form = TaskForm(request.POST)
         if form.is_valid():
-            new_task = form.save(commit=False)
+            new_task = Task(
+                title=form.cleaned_data["title"],
+                description=form.cleaned_data["description"],
+                deadline=form.cleaned_data["deadline"],
+                priority=form.cleaned_data["priority"],
+            )
             new_task.save()
             list_instance = ToDoList.objects.get(id=todo_list_id)
             list_instance.tasks.add(new_task)
             return redirect("tasks_view_v1", todo_list_id=todo_list_id)
     else:
         form = TaskForm()
-    return render(request, "todo_list_app/v1/create_task.html", {"form": form})
+    return render(request, "todo_list_app/v1/create_task_v1.html", {"form": form})
 
 
 @login_required
@@ -47,7 +53,11 @@ def create_task_by_shorten_link(request, todo_list_id):
             return redirect("tasks_view_v1", todo_list_id=todo_list_id)
     else:
         form = CreateTaskByShortenLinkForm()
-    return render(request, "todo_list_app/v1/create_task.html", {"form": form})
+    return render(
+        request,
+        "todo_list_app/create_task.html",
+        {"form": form},
+    )
 
 
 @login_required
@@ -55,14 +65,20 @@ def generate_short_link(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     short_link, created = TaskLink.objects.get_or_create(task=task)
     return render(
-        request, "todo_list_app/v1/generate_short_link.html", {"short_link": short_link}
+        request,
+        "todo_list_app/generate_short_link.html",
+        {"short_link": short_link},
     )
 
 
 @login_required
 def task_detail_view(request, task_id):
     task = get_object_or_404(Task, id=task_id)
-    return render(request, "todo_list_app/v1/task_detail.html", {"task": task})
+    return render(
+        request,
+        "todo_list_app/task_detail.html",
+        {"task": task},
+    )
 
 
 @login_required

@@ -13,6 +13,6 @@ class GenerateShortLinkView(View):
         short_link, created = TaskLink.objects.get_or_create(task=task)
         return render(
             request,
-            "todo_list_app/v1/generate_short_link.html",
+            "todo_list_app/generate_short_link.html",
             {"short_link": short_link},
         )

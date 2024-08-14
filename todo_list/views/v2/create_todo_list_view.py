@@ -9,7 +9,7 @@ from todo_list.models import ToDoList
 class CreateTodoListView(CreateView, LoginRequiredMixin):
     model = ToDoList
     success_url = reverse_lazy("all_todo_lists_view_v2")
-    template_name = "todo_list_app/v1/create_todo_list.html"
+    template_name = "todo_list_app/create_todo_list.html"
     form_class = TodoListForm
 
     def form_valid(self, form):

@@ -10,4 +10,8 @@ from todo_list.models import Task
 class TaskDetailView(View):
     def get(self, request, task_id):
         task = get_object_or_404(Task, id=task_id)
-        return render(request, "todo_list_app/v1/task_detail.html", {"task": task})
+        return render(
+            request,
+            "todo_list_app/task_detail.html",
+            {"task": task},
+        )

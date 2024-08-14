@@ -9,7 +9,7 @@ from todo_list.models import TaskLink, ToDoList
 
 class CreateTaskByShortLinkView(FormView, LoginRequiredMixin):
     form_class = CreateTaskByShortenLinkForm
-    template_name = "todo_list_app/v1/create_task.html"
+    template_name = "todo_list_app/create_task.html"
 
     def get_success_url(self):
         todo_list_id = self.kwargs["todo_list_id"]

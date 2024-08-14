@@ -10,7 +10,7 @@ from todo_list.models import Task, ToDoList
 class CreateTaskView(CreateView, LoginRequiredMixin):
     model = Task
     form_class = TaskForm
-    template_name = "todo_list_app/v1/create_task.html"
+    template_name = "todo_list_app/create_task.html"
 
     def get_success_url(self):
         list_id = self.kwargs["todo_list_id"]

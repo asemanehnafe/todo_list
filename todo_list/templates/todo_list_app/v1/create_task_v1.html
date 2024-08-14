@@ -1,0 +1,20 @@
+<!doctype html>
+  <h1>Create a new task</h1>
+  <form method="post">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.field.required  %}
+                    ***
+                {% endif %}
+                {% if field.help_text %}
+                  <p class="helptext" id="{{ field.auto_id }}_helptext">
+                    {{ field.help_text|safe }}
+                  </p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    <button type="submit">Save</button>
+  </form>

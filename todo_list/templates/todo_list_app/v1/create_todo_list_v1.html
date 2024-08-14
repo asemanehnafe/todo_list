@@ -1,0 +1,15 @@
+<!doctype html>
+  <h1>Create a new todo list</h1>
+  <form method="post">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.field.required  %}
+                    ***
+                {% endif %}
+            </div>
+        {% endfor %}
+    <button type="submit">Save</button>
+  </form>
