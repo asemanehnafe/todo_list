@@ -36,4 +36,9 @@ urlpatterns = [
         DeleteTaskView.as_view(),
         name="delete_task_v2",
     ),
+    path(
+        "todo_list/<int:todo_list_id>/task/<int:pk>/edit_task",
+        EditTaskView.as_view(),
+        name="edit_task_v2",
+    ),
 ]

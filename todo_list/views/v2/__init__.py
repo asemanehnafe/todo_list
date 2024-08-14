@@ -7,3 +7,4 @@ from .delete_todo_list_view import DeleteTodoListView
 from .delete_task_view import DeleteTaskView
 from .create_task_by_short_link_view import CreateTaskByShortLinkView
 from .generate_short_link_view import GenerateShortLinkView
+from .edit_task_view import EditTaskView
