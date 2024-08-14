@@ -9,11 +9,13 @@ from todo_list.models import ToDoList
 
 @method_decorator(login_required, name="dispatch")
 class EditTodoListView(View):
+    template_name = "todo_list_app/create_todo_list.html"
+
     def get(self, request, todo_list_id):
         form = TodoListForm()
         return render(
             request,
-            "todo_list_app/v1/todo_list_edits_v1.html",
+            self.template_name,
             {"form": form, "title": "Edit todo_list"},
         )
 

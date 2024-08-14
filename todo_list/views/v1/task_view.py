@@ -107,7 +107,7 @@ def edit_task(request, todo_list_id, task_id):
             task.description = form.cleaned_data["description"]
             task.deadline = form.cleaned_data["deadline"]
             task.priority = form.cleaned_data["priority"]
-            task.file = form.cleaned_data["file"]
+            task.file = request.FILES["file"]
             task.save()
             return redirect("tasks_view_v1", todo_list_id=todo_list_id)
     else:

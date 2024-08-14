@@ -1,6 +1,6 @@
 <!doctype html>
   <h1>{{ title }}</h1>
-  <form method="post">
+  <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
         {% for field in form %}
             <div class="fieldWrapper">
