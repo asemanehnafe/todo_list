@@ -10,6 +10,16 @@ urlpatterns = [
         delete_todo_list,
         name="delete_todo_list_v1",
     ),
+    path(
+        "todo_list/<int:todo_list_id>/edit_todo_list/",
+        edit_todo_list,
+        name="edit_todo_list_v1",
+    ),
+    path(
+        "todo_list/<int:todo_list_id>/task/<int:task_id>/edit_task",
+        edit_task,
+        name="edit_task_v1",
+    ),
     path("todo_list/<int:todo_list_id>/", task_view, name="tasks_view_v1"),
     path(
         "todo_list/<int:todo_list_id>/create_task/", create_task, name="create_task_v1"

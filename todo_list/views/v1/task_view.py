@@ -37,7 +37,11 @@ def create_task(request, todo_list_id):
             return redirect("tasks_view_v1", todo_list_id=todo_list_id)
     else:
         form = TaskForm()
-    return render(request, "todo_list_app/v1/create_task_v1.html", {"form": form})
+    return render(
+        request,
+        "todo_list_app/v1/task_edits_v1.html",
+        {"form": form, "title": "Create Task"},
+    )
 
 
 @login_required
@@ -91,3 +95,25 @@ def delete_task(request, todo_list_id, task_id):
     if is_task_in_no_list:
         task.delete()
     return redirect("tasks_view_v1", todo_list_id=todo_list_id)
+
+
+@login_required
+def edit_task(request, todo_list_id, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    if request.method == "POST":
+        form = TaskForm(request.POST, request.FILES)
+        if form.is_valid():
+            task.title = form.cleaned_data["title"]
+            task.description = form.cleaned_data["description"]
+            task.deadline = form.cleaned_data["deadline"]
+            task.priority = form.cleaned_data["priority"]
+            task.file = form.cleaned_data["file"]
+            task.save()
+            return redirect("tasks_view_v1", todo_list_id=todo_list_id)
+    else:
+        form = TaskForm()
+    return render(
+        request,
+        "todo_list_app/v1/task_edits_v1.html",
+        {"form": form, "title": "Edit Task"},
+    )

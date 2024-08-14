@@ -28,8 +28,8 @@ def create_todo_list(request):
         form = TodoListForm()
     return render(
         request,
-        "todo_list_app/v1/create_todo_list_v1.html",
-        {"form": form},
+        "todo_list_app/v1/todo_list_edits_v1.html",
+        {"form": form, "title": "Create New TodoList"},
     )
 
 
@@ -42,3 +42,20 @@ def delete_todo_list(request, todo_list_id):
             task.delete()
     deleting_todo_list.delete()
     return redirect("all_todo_lists_view_v1")
+
+
+def edit_todo_list(request, todo_list_id):
+    if request.method == "POST":
+        form = TodoListForm(request.POST)
+        if form.is_valid():
+            editing_todo_list = get_object_or_404(ToDoList, id=todo_list_id)
+            editing_todo_list.name = form.cleaned_data["name"]
+            editing_todo_list.save()
+            return redirect("all_todo_lists_view_v1")
+    else:
+        form = TodoListForm()
+    return render(
+        request,
+        "todo_list_app/v1/todo_list_edits_v1.html",
+        {"form": form, "title": "Edit todo_list"},
+    )

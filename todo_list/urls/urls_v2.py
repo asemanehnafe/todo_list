@@ -8,7 +8,12 @@ urlpatterns = [
     path(
         "todo_list/<int:pk>/delete_todo_list/",
         DeleteTodoListView.as_view(),
-        name="delete_list_v2",
+        name="delete_todo_list_v2",
+    ),
+    path(
+        "todo_list/<int:pk>/edit_todo_list/",
+        EditTodoListView.as_view(),
+        name="edit_todo_list_v2",
     ),
     path(
         "todo_list/<int:todo_list_id>/",

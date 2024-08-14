@@ -3,7 +3,9 @@
   <ul>
     {% for todo_list in todo_lists %}
       <li><a href="{% url 'tasks_view_v2_2' todo_list.id %}">{{ todo_list.name }}</a> -
-          <a href="{% url 'delete_list_v2_2' todo_list.id %}">delete list</a></li>
+          <a href="{% url 'delete_todo_list_v2_2' todo_list.id %}">delete list</a>
+          <a href="{% url 'edit_todo_list_v2_2' todo_list.id %}">edit list</a></li>
+
      {% empty %}
         <li>No list yet.</li>
     {% endfor %}

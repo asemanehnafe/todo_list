@@ -5,6 +5,7 @@
       <li><a href="{% url 'task_detail_view' task.id %}">{{ task.title }}</a> -
       <a href="{% url 'generate_short_link' task.id %}">Share Task</a> -
       <a href="{% url 'delete_task' todo_list_id task.id%}">Delete Task</a>
+       <a href="{% url 'edit_task_v1' todo_list_id task.id%}">Edit Task</a>
       </li>
     {% empty %}
         <li>No task yet.</li>

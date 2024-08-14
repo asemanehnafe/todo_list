@@ -6,9 +6,14 @@ urlpatterns = [
     path("", AllTodoListsView.as_view(), name="all_todo_lists_view_v2_2"),
     path("create_todo_list/", CreateTodoListView.as_view(), name="create_list_v2_2"),
     path(
-        "todo_list/<int:todo_list_id>/delete_list/",
+        "todo_list/<int:todo_list_id>/delete_todo_list/",
         DeleteTodoListView.as_view(),
-        name="delete_list_v2_2",
+        name="delete_todo_list_v2_2",
+    ),
+    path(
+        "todo_list/<int:todo_list_id>/edit_todo_list/",
+        EditTodoListView.as_view(),
+        name="edit_todo_list_v2_2",
     ),
     path(
         "todo_list/<int:todo_list_id>/",
@@ -35,5 +40,10 @@ urlpatterns = [
         "todo_list/<int:todo_list_id>/task/<int:task_id>/delete_task",
         DeleteTaskView.as_view(),
         name="delete_task_v2_2",
+    ),
+    path(
+        "todo_list/<int:todo_list_id>/task/<int:task_id>/edit_task",
+        EditTaskView.as_view(),
+        name="edit_task_v2_2",
     ),
 ]
