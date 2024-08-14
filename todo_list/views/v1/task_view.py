@@ -22,13 +22,14 @@ def task_view(request, todo_list_id):
 @login_required
 def create_task(request, todo_list_id):
     if request.method == "POST":
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, request.FILES)
         if form.is_valid():
             new_task = Task(
                 title=form.cleaned_data["title"],
                 description=form.cleaned_data["description"],
                 deadline=form.cleaned_data["deadline"],
                 priority=form.cleaned_data["priority"],
+                file=form.cleaned_data["file"],
             )
             new_task.save()
             list_instance = ToDoList.objects.get(id=todo_list_id)

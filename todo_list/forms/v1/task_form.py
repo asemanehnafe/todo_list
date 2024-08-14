@@ -20,3 +20,7 @@ class TaskForm(forms.Form):
     )
     deadline = forms.DateField(label="تاریخ سررسید")
     priority = forms.ChoiceField(label="الویت", choices=PRIORITY_CHOICES)
+    file = forms.FileField(required=False)
+
+    def clean_file(self):
+        return self.data["file"]

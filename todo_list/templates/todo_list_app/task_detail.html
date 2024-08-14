@@ -3,3 +3,11 @@
     <p>description: {{ task.description }}</p>
     <p>deadline: {{ task.deadline }}</p>
     <p>priority: {{ task.get_priority_display }}</p>
+
+  {% if task.file %}
+    <p><strong>Attached File:</strong></p>
+      {{ task.file.url }}
+    <a href="{{ task.file.url }}" download="{{ task.file.name }}">Download {{ task.file.name }}</a>
+  {% else %}
+    <p>No file attached.</p>
+  {% endif %}

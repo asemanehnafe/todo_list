@@ -19,6 +19,7 @@ class Task(models.Model):
     priority = models.IntegerField(
         choices=PRIORITY_CHOICES, default=MEDIUM, verbose_name="الویت"
     )
+    file = models.FileField(upload_to="task_files", blank=True, null=True)
 
     class Meta:
         ordering = ["deadline", "priority"]
