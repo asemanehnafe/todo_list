@@ -1,10 +1,14 @@
 from rest_framework.generics import ListAPIView
 
-from todo_list.models import ToDoList
-from todo_list.serializer import TodoListSerializer
+from todo_list.models import Task
+from todo_list.serializer import TaskSerializer
 
 
-class AllTodoListsView(ListAPIView):
-    model = ToDoList
-    queryset = ToDoList.objects.all()
-    serializer_class = TodoListSerializer
+class TodoListDetailView(ListAPIView):
+    model = Task
+    serializer_class = TaskSerializer
+
+    def get_queryset(self):
+        return Task.objects.all().filter(
+            todolist__id=self.kwargs["todo_list_id"], todolist__user=self.request.user
+        )

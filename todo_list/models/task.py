@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 
 from django.db import models
 
@@ -15,7 +15,9 @@ class Task(models.Model):
 
     title = models.CharField(max_length=100, verbose_name="عنوان")
     description = models.TextField(verbose_name="توضیحات")
-    deadline = models.DateField(verbose_name="تاریخ سررسید", default=datetime.now)
+    deadline = models.DateField(
+        verbose_name="تاریخ سررسید", default=datetime.date.today
+    )
     priority = models.IntegerField(
         choices=PRIORITY_CHOICES, default=MEDIUM, verbose_name="الویت"
     )
