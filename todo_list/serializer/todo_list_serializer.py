@@ -6,4 +6,4 @@ from todo_list.models import ToDoList
 class TodoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDoList
-        fields = "__all__"
+        fields = ["name", "id"]
