@@ -9,7 +9,7 @@ from todo_list.models import Task
 
 class EditTaskView(UpdateView, LoginRequiredMixin):
     model = Task
-    template_name = "todo_list_app/create_todo_list.html"
+    template_name = "todo_list_app/form_display.html"
     form_class = TaskForm
 
     def get_context_data(self, **kwargs):

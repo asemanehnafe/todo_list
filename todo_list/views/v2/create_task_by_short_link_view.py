@@ -9,7 +9,7 @@ from todo_list.models import TaskLink, ToDoList
 
 class CreateTaskByShortLinkView(FormView, LoginRequiredMixin):
     form_class = CreateTaskByShortenLinkForm
-    template_name = "todo_list_app/create_todo_list.html"
+    template_name = "todo_list_app/form_display.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -9,7 +9,7 @@ from todo_list.models import ToDoList
 
 @method_decorator(login_required, name="dispatch")
 class EditTodoListView(View):
-    template_name = "todo_list_app/create_todo_list.html"
+    template_name = "todo_list_app/form_display.html"
 
     def get(self, request, todo_list_id):
         form = TodoListForm()

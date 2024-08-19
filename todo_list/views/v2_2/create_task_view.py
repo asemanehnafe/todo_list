@@ -11,11 +11,13 @@ from todo_list.models import ToDoList
 @method_decorator(login_required, name="dispatch")
 class CreateTaskView(View):
     form_class = TaskForm
-    template_name = "todo_list_app/create_task.html"
+    template_name = "todo_list_app/form_display.html"
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
-        return render(request, self.template_name, {"form": form})
+        return render(
+            request, self.template_name, {"form": form, "title": "Create Task"}
+        )
 
     def post(self, request, todo_list_id):
         form = self.form_class(request.POST)
@@ -26,4 +28,6 @@ class CreateTaskView(View):
             todo_list_instance.tasks.add(new_task)
             return redirect("tasks_view_v2_2", todo_list_id=todo_list_id)
 
-        return render(request, self.template_name, {"form": form})
+        return render(
+            request, self.template_name, {"form": form, "title": "Create Task"}
+        )

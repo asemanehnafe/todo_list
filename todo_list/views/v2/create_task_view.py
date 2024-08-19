@@ -10,11 +10,12 @@ from todo_list.models import Task, ToDoList
 class CreateTaskView(CreateView, LoginRequiredMixin):
     model = Task
     form_class = TaskForm
-    template_name = "todo_list_app/create_todo_list.html"
+    template_name = "todo_list_app/form_display.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "create task"
+        return context
 
     def get_success_url(self):
         list_id = self.kwargs["todo_list_id"]
