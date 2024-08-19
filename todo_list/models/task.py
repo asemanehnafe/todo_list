@@ -101,5 +101,5 @@ class Task(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.full_clean()
+        self.clean()
         return super(Task, self).save(*args, **kwargs)

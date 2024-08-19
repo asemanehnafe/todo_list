@@ -39,7 +39,7 @@ urlpatterns = [
     path(
         "task/<int:task_id>/generate_short_link/",
         GenerateShortLinkView.as_view(),
-        name="generate_short_link_v2_2",
+        name="generate_short_link_v3",
     ),
     path(
         "todo_list/<int:todo_list_id>/create_task_by_shortned_link/",

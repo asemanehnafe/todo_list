@@ -22,7 +22,7 @@ class CreateTaskView(CreateView, LoginRequiredMixin):
         return reverse_lazy("tasks_view_v2", kwargs={"todo_list_id": list_id})
 
     def form_valid(self, form):
-        task = form.save(commit=False)
+        task = form.save()
         todo_list_id = self.kwargs.get("todo_list_id")
         task_list = get_object_or_404(ToDoList, id=todo_list_id)
         task_list.tasks.add(task)

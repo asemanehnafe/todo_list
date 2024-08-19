@@ -10,11 +10,15 @@ from todo_list.models import TaskLink, ToDoList
 @method_decorator(login_required, name="dispatch")
 class CreateTaskByShortenLinkView(View):
     form_class = CreateTaskByShortenLinkForm
-    template_name = "todo_list_app/create_task.html"
+    template_name = "todo_list_app/form_display.html"
 
     def get(self, request, *args, **kwargs):
         form = CreateTaskByShortenLinkForm()
-        return render(request, self.template_name, {"form": form})
+        return render(
+            request,
+            self.template_name,
+            {"form": form, "title": "Create Task by Shorten Link"},
+        )
 
     def post(self, request, todo_list_id):
         form = CreateTaskByShortenLinkForm(request.POST)
