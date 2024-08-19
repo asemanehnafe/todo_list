@@ -1,4 +1,5 @@
 from rest_framework.generics import DestroyAPIView, get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 
 from todo_list.models import ToDoList
 from todo_list.serializer import TodoListSerializer
@@ -9,6 +10,7 @@ ONE = 1
 class DeleteTodoListView(DestroyAPIView):
     queryset = ToDoList.objects.all()
     serializer_class = TodoListSerializer
+    permission_classes = [IsAuthenticated]
 
     def delete(self, request, *args, **kwargs):
         deleting_todo_list = get_object_or_404(ToDoList, pk=self.kwargs["pk"])

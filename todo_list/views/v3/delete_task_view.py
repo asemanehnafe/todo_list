@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.generics import DestroyAPIView, get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from todo_list.models import Task, ToDoList
@@ -11,6 +12,7 @@ ZERO = 0
 class DeleteTaskView(DestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
 
     def delete(self, request, *args, **kwargs):
         todo_list_id = self.kwargs["todo_list_id"]
