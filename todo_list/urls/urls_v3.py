@@ -36,4 +36,14 @@ urlpatterns = [
         EditTaskView.as_view(),
         name="edit_task_v3",
     ),
+    path(
+        "task/<int:task_id>/generate_short_link/",
+        GenerateShortLinkView.as_view(),
+        name="generate_short_link_v2_2",
+    ),
+    path(
+        "todo_list/<int:todo_list_id>/create_task_by_shortned_link/",
+        CreateTaskByShortLinkView.as_view(),
+        name="create_task_by_shortened_link_v3",
+    ),
 ]

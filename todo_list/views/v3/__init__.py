@@ -7,3 +7,5 @@ from .create_task_view import CreateTaskView
 from .delete_task_view import DeleteTaskView
 from .task_detail_view import TaskDetailView
 from .edit_task_view import EditTaskView
+from .generate_shor_link_view import GenerateShortLinkView
+from .create_task_by_shorten_link_view import CreateTaskByShortLinkView
