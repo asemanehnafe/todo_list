@@ -1,5 +1,7 @@
 from django import forms
 
+from todo_list.models.task import *
+
 
 class TaskForm(forms.Form):
     HIGH = 1
@@ -11,13 +13,15 @@ class TaskForm(forms.Form):
         (LOW, "Low"),
     ]
 
-    title = forms.CharField(
-        label="عنوان",
-        required=True,
-    )
+    title = forms.CharField(label="عنوان", required=True, validators=title_validators)
     description = forms.CharField(
-        label="توضیحات", widget=forms.Textarea, required=False
+        label="توضیحات",
+        widget=forms.Textarea,
+        required=False,
+        validators=description_validators,
     )
-    deadline = forms.DateField(label="تاریخ سررسید")
-    priority = forms.ChoiceField(label="الویت", choices=PRIORITY_CHOICES)
-    file = forms.FileField(required=False)
+    deadline = forms.DateField(label="تاریخ سررسید", validators=[deadline_validator])
+    priority = forms.ChoiceField(
+        label="الویت", choices=PRIORITY_CHOICES, validators=[priority_validator]
+    )
+    file = forms.FileField(required=False, validators=[validate_file_extension])

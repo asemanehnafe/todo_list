@@ -1,9 +1,26 @@
 from django.contrib.auth.models import User
+from django.core.validators import (
+    MaxLengthValidator,
+    MinLengthValidator,
+    RegexValidator,
+)
 from django.db import models
+
+name_validators = [
+    MinLengthValidator(1, message="The title must be at least 1 characters long."),
+    MaxLengthValidator(100, message="The title must be at least 255 characters long."),
+    RegexValidator(
+        regex=r"^[\w\s]+$",
+        message="The title can only contain letters, numbers, and spaces.",
+        code="invalid_title",
+    ),
+]
 
 
 class ToDoList(models.Model):
-    name = models.CharField(max_length=100, verbose_name="عنوان")
+    name = models.CharField(
+        max_length=100, verbose_name="عنوان", validators=name_validators
+    )
     tasks = models.ManyToManyField(
         to="todo_list.Task", blank=True, verbose_name="وظیفه ها"
     )
@@ -11,3 +28,7 @@ class ToDoList(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super(ToDoList, self).save(*args, **kwargs)
