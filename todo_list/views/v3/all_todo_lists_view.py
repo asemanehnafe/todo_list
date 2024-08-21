@@ -2,7 +2,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from todo_list.models import ToDoList
-from todo_list.serializer import TodoListSerializer
+from todo_list.serializer.todo_list_serializer import TodoListSerializer
 
 
 class AllTodoListsView(ListAPIView):

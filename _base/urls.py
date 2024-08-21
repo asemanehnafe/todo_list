@@ -29,6 +29,8 @@ urlpatterns = [
     path("v2_2/", include("todo_list.urls.urls_v2_2")),
     path("v2/", include("todo_list.urls.urls_v2")),
     path("v3/", include("todo_list.urls.urls_v3")),
+    path("v4/", include("todo_list.urls.urls_v4")),
+    path("v4_2/", include("todo_list.urls.urls_v4_2")),
 ]
 if settings.DEBUG:
     print("DEBUG MODE")
