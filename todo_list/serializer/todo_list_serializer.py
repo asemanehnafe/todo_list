@@ -10,3 +10,6 @@ class TodoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDoList
         fields = ["name", "id", "tasks"]
+
+    # def validate_name(self, name):
+    #
