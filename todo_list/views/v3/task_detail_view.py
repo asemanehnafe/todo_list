@@ -1,4 +1,3 @@
-from requests import Response
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
