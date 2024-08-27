@@ -93,6 +93,9 @@ class Task(models.Model):
         null=True,
         validators=[validate_file_extension],
     )
+    state = models.BooleanField(
+        choices=((True, "done"), (False, "undone")), default=False
+    )
 
     class Meta:
         ordering = ["deadline", "priority"]
