@@ -3,7 +3,8 @@
   <ul>
     {% for task in tasks %}
       <li><a href="{% url 'task_detail_view_v2_2' task.id %}">{{ task.title }}</a> -
-      <a href="{% url 'generate_short_link_v2_2' task.id %}">Share Task</a> -
+      <a href="{% url 'generate_short_link_v2_2' task.id %}">Share Task</a>
+      <a href="{% url 'edit_task_v2_2' todo_list_id task.id%}">edit Task</a>
       <a href="{% url 'delete_task_v2_2' todo_list_id task.id%}">Delete Task</a>
       </li>
     {% empty %}

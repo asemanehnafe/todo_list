@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View
 
@@ -25,4 +26,9 @@ class EditTodoListView(View):
             editing_todo_list = get_object_or_404(ToDoList, id=todo_list_id)
             editing_todo_list.name = form.cleaned_data["name"]
             editing_todo_list.save()
-            return redirect("all_todo_lists_view_v1")
+            return redirect("all_todo_lists_view_v2_2")
+        return render(
+            request,
+            self.template_name,
+            {"form": form, "title": "Edit todo_list"},
+        )

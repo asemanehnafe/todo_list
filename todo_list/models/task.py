@@ -56,6 +56,15 @@ def validate_file_extension(value):
         raise ValidationError("Unsupported file extension.")
 
 
+def save_form_data_to_task_instance(task, form):
+    task.title = form.cleaned_data["title"]
+    task.description = form.cleaned_data["description"]
+    task.deadline = form.cleaned_data["deadline"]
+    task.priority = form.cleaned_data["priority"]
+    task.file = form.cleaned_data["file"]
+    task.save()
+
+
 class Task(models.Model):
     HIGH = 1
     MEDIUM = 2

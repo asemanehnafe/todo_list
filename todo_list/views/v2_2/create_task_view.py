@@ -20,7 +20,7 @@ class CreateTaskView(View):
         )
 
     def post(self, request, todo_list_id):
-        form = self.form_class(request.POST)
+        form = self.form_class(data=request.POST, files=request.FILES)
         if form.is_valid():
             new_task = form.save(commit=False)
             new_task.save()

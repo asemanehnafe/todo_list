@@ -16,7 +16,7 @@ class CreateTodoListView(View):
         return render(request, self.template_name, {"form": form})
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+        form = self.form_class(data=request.POST)
         if form.is_valid():
             new_todo_list = form.save(commit=False)
             new_todo_list.user = request.user

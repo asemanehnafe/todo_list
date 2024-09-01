@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from todo_list.forms import CreateTaskByShortenLinkForm
 from todo_list.forms.v1 import TaskForm
-from todo_list.models import Task, TaskLink, ToDoList
+from todo_list.models import Task, TaskLink, ToDoList, save_form_data_to_task_instance
 
 ZERO = 0
 
@@ -101,17 +101,23 @@ def delete_task(request, todo_list_id, task_id):
 def edit_task(request, todo_list_id, task_id):
     task = get_object_or_404(Task, id=task_id)
     if request.method == "POST":
-        form = TaskForm(request.POST, request.FILES)
+        form = TaskForm(
+            request.POST,
+            request.FILES,
+        )
         if form.is_valid():
-            task.title = form.cleaned_data["title"]
-            task.description = form.cleaned_data["description"]
-            task.deadline = form.cleaned_data["deadline"]
-            task.priority = form.cleaned_data["priority"]
-            task.file = request.FILES["file"]
-            task.save()
+            save_form_data_to_task_instance(task, form)
             return redirect("tasks_view_v1", todo_list_id=todo_list_id)
     else:
-        form = TaskForm()
+        form = TaskForm(
+            initial={
+                "title": task.title,
+                "description": task.description,
+                "deadline": task.deadline,
+                "priority": task.priority,
+                "file": task.file,
+            }
+        )
     return render(
         request,
         "todo_list_app/v1/task_edits_v1.html",
