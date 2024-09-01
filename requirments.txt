@@ -1,4 +1,4 @@
-Django==5.0.7
+Django==4.2
 requests==2.32.3
 cfgv==3.4.0
 distlib==0.3.8

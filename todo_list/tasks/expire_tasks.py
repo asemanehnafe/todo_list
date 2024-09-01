@@ -3,12 +3,13 @@ from django.utils import timezone
 
 from todo_list.models import Task
 
-
-@shared_task
-def my_task(arg1, arg2):
-    result = arg1 + arg2
-    print(result)
-    return result
+#
+# @shared_task
+# def my_task(arg1, arg2):
+#     result = arg1 + arg2
+#     print(result)
+#     return result
+#
 
 
 @shared_task

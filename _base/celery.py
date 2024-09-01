@@ -15,7 +15,7 @@ app.autodiscover_tasks(["todo_list.tasks"])
 
 app.conf.beat_schedule = {
     "add-every-day": {
-        "task": "todo_list.tasks.check_deadlines",
+        "task": "todo_list.tasks.expire_tasks.check_deadlines",
         "schedule": 24 * 3600.0,
         "args": (),
     },
