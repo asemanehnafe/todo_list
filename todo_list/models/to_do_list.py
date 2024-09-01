@@ -5,6 +5,10 @@ from django.core.validators import (
     RegexValidator,
 )
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from todo_list.utils import invalid_todo_list_cache
 
 name_validators = [
     MinLengthValidator(1, message="The title must be at least 1 characters long."),
@@ -32,3 +36,8 @@ class ToDoList(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         return super(ToDoList, self).save(*args, **kwargs)
+
+
+@receiver(post_save, sender=ToDoList)
+def invalid_todo_list_cache_post_save(sender, instance, **kwargs):
+    invalid_todo_list_cache(instance.user.id)
