@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "todo_list",
+    "rest_framework",
     "django_celery_beat",
 ]
 
@@ -119,9 +121,10 @@ LOGIN_URL = "http://127.0.0.1:8000/admin/login/?next=/admin"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_ROOT = "static"
+STATIC_URL = "/static/"
 
-# Default primary key field type
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"  # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
