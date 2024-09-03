@@ -7,13 +7,15 @@ from todo_list.serializer import TodoListSerializer
 
 
 class TodoListViewSet(viewsets.ViewSet):
+    def get_queryset(self):
+        return ToDoList.objects.filter(user=self.request.user)
+
     def list(self, request):
-        queryset = ToDoList.objects.filter(user=request.user)
-        serializer = TodoListSerializer(queryset, many=True)
+        serializer = TodoListSerializer(self.get_queryset(), many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        todo_list = get_object_or_404(ToDoList, pk=pk)
+        todo_list = self.get_queryset().get(pk=pk)
         serializer = TodoListSerializer(todo_list)
         return Response(serializer.data)
 
@@ -24,7 +26,7 @@ class TodoListViewSet(viewsets.ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
-        todo_list = get_object_or_404(ToDoList, pk=pk)
+        todo_list = self.get_queryset().get(pk=pk)
         serializer = TodoListSerializer(data=request.data)
         if serializer.is_valid():
             serializer.validated_data["user"] = request.user
